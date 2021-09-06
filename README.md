@@ -74,7 +74,7 @@ def testimonials(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path('testmonials', views.testmonials),
+    path('testimonials', views.testmonials),
 ]
 ```
 then create a testimonials.html
@@ -86,21 +86,40 @@ goto the https://getbootstrap.com/docs/5.1/layout/columns/
    <body>
       <!-- This is copy 3 column layout form bootstrap-->
       <div class="container">
+        <h3 class = "mt-5 text-center">Testimonials</h3>
         <div class="row">
           <div class="col order-last">
-            Testimnial 1
+            Testimonial 1
           </div>
           <div class="col">
-            Testimnial 2
+            Testimonial 2
           </div>
           <div class="col order-first">
-            Testimnial 3
+            Testimonial 3
           </div>
         </div>
       </div>
    </body>
 </html>
 ```
+## Html template to reuse the navigation bar in the other pages
+- Edit the html for navbar with the structure like that 
+Online movie  Home Testimonials                                                     User Avartar - User Name[...Profiles, Settings, Logout]
+- Use the pravatar.cc to get the random avatars or uifaces.co
+- Set the name for the urls.py to use in the href of the navigation bar and others
+```python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.home, name = 'home'),
+    path('testimonials', views.testimonials, name = 'testimonials'),
+]
+```
+```html
+<a class="nav-link" href="{% url 'testimonials' %}">Testimonials</a>
+<img src ="https://i.pravatar.cc/300" alt= "Trung Van"></img>
+```
+- Make Django Template to resue the codes
+
 
 
 ## Contributing
