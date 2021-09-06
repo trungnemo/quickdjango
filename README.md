@@ -5,12 +5,10 @@ Learn to build an online movie web app with a Django Web Framework in python
 - bootstrap 4
 
 ## Getting Started
-
 Create a Virtual environment/venv for a movie app
 - understand what venv is, why we need it
 - how to creat a venv
 - install django in the venv
-
 ```bash
 #command to create a virtual environment for the project folder: venv_quickdjango
 python3 -m venv venv_quickdjango
@@ -18,6 +16,10 @@ python3 -m venv venv_quickdjango
 (venv_quickdjango) .\Scripts\activate
 #install django
 pip install django==3.1.3
+```
+Create a django project
+```bash
+django-admin createproject quickdjango
 ```
 Create a movieapp
 ```python
@@ -28,35 +30,20 @@ python manage.py startapp movieapp
 def home(request):
    return render(request, 'home.html', {})
 # add home in the project setting urls.py
-from django.contrib import admin
-from django.urls import path
 from movieapp import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('', views.home),
+    path('', views.home),
 ]
 # Add a .\templates\home.html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Django</title>
-  </head>
-  <body>
-    <h1>Welcome to Django: an Online Movie App</h1>
-    <h2>This cource for Thanh Tao</h2>
-  </body>
-</html>
 ```
 ## Django Admin Dashboard
-```python
-import django....
-
+```bash
+# ini the db structure for the dashboard
+python manage.py migrate
+# create a super user
 # my 'template'
-foobar.pluralize('word')
+python manage.py createsuperuser
 ```
 
 ## Contributing
