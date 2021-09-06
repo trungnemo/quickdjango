@@ -65,6 +65,43 @@ python manage.py createsuperuser
    </body>
 </html>
 ```
+## Add a testimonials.html to the movieapp
+```python
+# add a function in a view
+def testimonials(request):
+    return render(request, 'testimonials.html',{})
+#add the new path to urls.py the project quickdjango
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.home),
+    path('testmonials', views.testmonials),
+]
+```
+then create a testimonials.html
+goto the https://getbootstrap.com/docs/5.1/layout/columns/
+```html
+<!-- Copy all from home html into the new page -->
+<html>
+   <title>Testimonials</title>
+   <body>
+      <!-- This is copy 3 column layout form bootstrap-->
+      <div class="container">
+        <div class="row">
+          <div class="col order-last">
+            Testimnial 1
+          </div>
+          <div class="col">
+            Testimnial 2
+          </div>
+          <div class="col order-first">
+            Testimnial 3
+          </div>
+        </div>
+      </div>
+   </body>
+</html>
+```
+
 
 ## Contributing
 [TrungNEMO](https://www.facebook.com/TrungNEMO)
