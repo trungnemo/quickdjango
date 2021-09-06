@@ -119,7 +119,24 @@ urlpatterns = [
 <img src ="https://i.pravatar.cc/300" alt= "Trung Van"></img>
 ```
 - Make Django Template to resue the codes
-
+Create the layout.html in the tempaltes folder of the movieapp
+Copy all the content from home.html into it
+Replace title with
+```html
+ {% block title %} {% endblock %}
+```
+Replcae the content in the body with
+```html
+ {% block content %} {% endblock %}
+```
+Then apply it for the layout for the other pages with the structrue 
+```html
+ {% extends 'layout.html' %}
+<!--Title-->
+ {% block content %} <title>Page Title</title>{% endblock %}
+<!--Content-->
+ {% block content %} <h3>Page content</h3> {% endblock %}
+```
 
 
 ## Contributing
