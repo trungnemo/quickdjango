@@ -45,6 +45,15 @@ python manage.py migrate
 # my 'template'
 python manage.py createsuperuser
 ```
+## Add a Bootstrap 4 to the project
+- What boottrap is
+- How to use it int our project
+```html
+<!--Goto the https://getbootstrap.com/docs/5.1/getting-started/introduction/
+Get and copy the the CSS and JS and paste it into the html
+-->
+
+```
 
 ## Contributing
 [TrungNEMO](https://www.facebook.com/TrungNEMO)
