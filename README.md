@@ -178,6 +178,48 @@ class MyMovie(admin.ModelAdmin):
 admin.site.register(Movie, MyMovie)
 ```
 voila, run the web server for the improvement and goto the http://127.0.0.1:8080:/admin
+## Make the test to pass the movie data fromt the home view to home.html
+Prepare the test data as an array of dictionary then pass it from view to html
+```python
+#Demo test data to pass the data from view.py to html 
+# home page
+def home(request):
+    #Simple test to pass the data fromt the model to the html template
+    #movie_data = "John Wick"
+    movie_data = [
+        {
+            "name": "Microsoft Python Tutorial",
+            "year": "2019"
+        },
+        {
+            "name": "John Wich Chapter 4",
+            "year": "2021"
+        },
+        {
+            "name": "Iron Mask",
+            "year": "2020"
+        },
+    ]
+    return render(request, 'home.html',{"movie": movie_data})
+```
+Pass the data from view to home.html
+```html
+{% extends 'layout.html' %}
+<!--Title-->
+{% block title %}
+<title>Django Demo App</title>
+{% endblock %}
+
+<div class="container">
+  <!--Content-->
+  {% block content %}
+  <h1 class="mt-5 text-center">Online Move App</h1>
+  <!--<p>{{ movie }}</p>-->
+  {% for m in movie %}
+  <p>{{ m.name }} - {{m.year}}</p>
+  {% endfor %} {% endblock %}
+</div>
+```
 
 ## Contributing
 [TrungNEMO](https://www.facebook.com/TrungNEMO)
