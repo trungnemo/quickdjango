@@ -31,3 +31,8 @@ def home(request):
 # testimonials page
 def testimonials(request):
     return render(request, 'testimonials.html',{})
+
+# movie detail view
+def movie(request, movie_id):
+    movie_data = Movie.objects.get(id = movie_id)
+    return render(request, 'movie.html', {"movie": movie_data})
