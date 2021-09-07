@@ -163,9 +163,9 @@ python manage.py migrate
 - register the Movie model to be managed in the Django admin dashboard
 ```python
 from django.contrib import admin
-from models import *
+from .models import *
 # Register your models here.
-admin.site.Register(Movie)
+admin.site.register(Movie)
 ```
 voila, run the web server and goto the http://127.0.0.1:8080:/admin
 
