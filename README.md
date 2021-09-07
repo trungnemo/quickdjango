@@ -168,6 +168,16 @@ from .models import *
 admin.site.register(Movie)
 ```
 voila, run the web server and goto the http://127.0.0.1:8080:/admin
+-Let's make some improvement for the movie admin dashboad
+```python
+#Let make some improvement 
+class MyMovie(admin.ModelAdmin):
+    list_display = ('name','year','star','description')
+    list_filter = ('star','show')
+
+admin.site.register(Movie, MyMovie)
+```
+voila, run the web server for the improvement and goto the http://127.0.0.1:8080:/admin
 
 ## Contributing
 [TrungNEMO](https://www.facebook.com/TrungNEMO)
