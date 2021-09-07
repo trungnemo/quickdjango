@@ -220,9 +220,8 @@ Pass the data from view to home.html
   {% endfor %} {% endblock %}
 </div>
 ```
-## Pass the movies from the Database to the web pages
+## List all Movies (Pass the movies from the Database to the web pages)
 - List all the movies
-- View a movie details and watch the video
 ```python
 from django.shortcuts import render
 from .models import Movie
@@ -272,6 +271,58 @@ Render the list in the home.html
       </div>
     </div>
     {% endfor %}
+  </div>
+  {% endblock %}
+</div>
+```
+## View a Movie detail/Click the mivie trailer button in the list 
+- View the details and watch the video
+Add a new function in view.py
+```python
+# movie detail view
+def movie(request, movie_id):
+    movie_data = Movie.objects.get(id = movie_id)
+    return render(request, 'movie.html', {"movie": movie_data})
+#Add the code in the urls.py of the quocjdjango projec 
+path('movie/<int:movie_id>', views.movie, name = 'movie'),
+```
+Add a new page movie.html in the template
+```html
+{% extends 'layout.html' %}
+<!--Title-->
+{% block title %}
+<title>{{ movie.name }}</title>
+<style>
+  .iframe-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+{% endblock %}
+
+<div class="container">
+  <!--Content-->
+  {% block content %}
+  <div class="card" style="width: 100%">
+    <dif class="iframe-container">
+      <iframe
+        src="//www.youtube.com/embed/{{ movie.trailer }}"
+        allowfullscreen
+      ></iframe>
+    </dif>
+    <div class="card-body">
+      <h4>{{ movie.name }} ({{ movie.year }})</h4>
+    </div>
   </div>
   {% endblock %}
 </div>
