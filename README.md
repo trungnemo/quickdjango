@@ -220,6 +220,62 @@ Pass the data from view to home.html
   {% endfor %} {% endblock %}
 </div>
 ```
+## Pass the movies from the Database to the web pages
+- List all the movies
+- View a movie details and watch the video
+```python
+from django.shortcuts import render
+from .models import Movie
+# home page
+def home(request):
+    #List all the movie records fromt he movie table in the database
+    #movie_data = Movie.objects.all() 
+    
+    #Filter the movie records fromt he movie table in the database
+    #That has star > 2 AND year >= 2015
+    movie_data = Movie.object.filter(star__gt=2, year__gt=2015)
+    
+    return render(request, 'home.html',{"movie": movie_data})
+```
+Render the list in the home.html
+```html
+<!-- Copy the code for the bootstrap card at https://getbootstrap.com/docs/5.1/components/card/ -->
+{% extends 'layout.html' %}
+<!--Title-->
+{% block title %}
+<title>Django Demo App</title>
+{% endblock %}
+
+<div class="container">
+  <!--Content-->
+  {% block content %}
+  <h1 class="mt-5 text-center">Online Move App</h1>
+  <!--<p>{{ movie }}</p>-->
+  <div class="row mt-5">
+    {% for m in movie %}
+    <div class="col-sm">
+      <div class="card" style="width: 18rem">
+        <img
+          src="http://img.youtube.com/vi/{{m.trailer}}/maxresdefault.jpg"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ m.name }}e</h5>
+          {% if m.star > 4 %}
+          <button type="button" class="btn btn-danger">{{ m.star }}</button>
+          {% else %}
+          <button type="button" class="btn btn-warning">{{ m.star }}</button>
+          {% endif %}
+          <p class="card-text">{{ m.description }}</p>
+          <a href="#" class="btn btn-primary">Trailer</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
+</div>
+```
 
 ## Contributing
 [TrungNEMO](https://www.facebook.com/TrungNEMO)
