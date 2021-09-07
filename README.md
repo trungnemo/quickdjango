@@ -137,7 +137,37 @@ Then apply it for the layout for the other pages with the structrue
 <!--Content-->
  {% block content %} <h3>Page content</h3> {% endblock %}
 ```
-
+## Movie Data Model
+We will add a Movie model in the models.py of the movieapp 
+```pythonfrom django.db import models
+# movie model
+class Movie(models.Model):
+    name = models.CharField(max_length = 200, null = False)
+    description = models.TextField(null = False)
+    trailer = models.CharField(max_length = 200, null = False)
+    year = models.IntegerField(null = False)
+    star = models.IntegerField(null = True)
+    show = models.BooleanField(default = True)#If no input from User then the default value is True to this property
+    
+    def __str__(self):
+        return self.name
+```
+- make the migration script to migrate the movie the db
+```bash
+python manage.py makemigrattions
+```
+- run the migration script to mighrate the Movie model the db
+```bash
+python manage.py migrate
+```
+- register the Movie model to be managed in the Django admin dashboard
+```python
+from django.contrib import admin
+from models import *
+# Register your models here.
+admin.site.Register(Movie)
+```
+voila, run the web server and goto the http://127.0.0.1:8080:/admin
 
 ## Contributing
 [TrungNEMO](https://www.facebook.com/TrungNEMO)
